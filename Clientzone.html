@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b1b">
+<title>Clientzone LTD | Tecnologia digitale</title>
+
+<style>
+:root {
+  --bg: #050b1b;
+  --panel: #0b1730;
+  --blue: #1687ff;
+  --cyan: #38e5ff;
+  --text: #f4f8ff;
+  --muted: #9aaccb;
+  --border: #1b3153;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at 75% 15%, #073e7650, transparent 40%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font-family: inherit; cursor: pointer; }
+
+header {
+  padding: 20px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  text-transform: none;
+  white-space: nowrap;
+  text-shadow: 0 0 22px #1687ff30;
+}
+
+.logo span {
+  color: #38e5ff;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.logo:hover {
+  filter: brightness(1.15);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+nav a {
+  color: #b6c8e8;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+nav a:hover { color: var(--cyan); }
+
+button, .btn { transition: .2s; }
+button:hover, .btn:hover { transform: translateY(-2px); }
+
+nav button {
+  background: linear-gradient(100deg, #0869f5, #168cff);
+  border: 0;
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+/* BANNER BONUS */
+
+.promo {
+  max-width: 1160px;
+  width: calc(100% - 40px);
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 22px;
+  border: 1px solid #2169b2;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at right, #0969cf50, transparent 60%),
+    linear-gradient(145deg, #0d1b35, #081225);
+  box-shadow: 0 15px 55px #0004;
+  overflow: hidden;
+}
+
+.promo-photo {
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #24568d;
+  background: #101f3b;
+}
+
+.promo-photo img {
+  display: block;
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  object-position: 90% center;
+}
+
+.photo-credit {
+  display: block;
+  padding: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.photo-credit a { color: var(--cyan); }
+
+.promo-content {
+  text-align: center;
+  padding: 15px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-bottom: 22px;
+  border: 1px solid #175ca1;
+  border-radius: 30px;
+  background: #0c2850;
+  color: #66dfff;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.promo-content h1 {
+  font-size: clamp(27px, 4vw, 43px);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.amount {
+  font-size: clamp(60px, 8vw, 88px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  color: var(--cyan);
+  text-shadow: 0 0 30px #38e5ff35;
+  margin: 12px 0;
+}
+
+.promo-content p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 15px auto 24px;
+  max-width: 430px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 22px;
+  border: 0;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+.primary {
+  background: linear-gradient(100deg, #0869f5, #168cff);
+  color: white;
+  box-shadow: 0 0 25px #1687ff25;
+}
+
+.secondary {
+  background: #0b1730;
+  color: white;
+  border: 1px solid #2b466c;
+  margin-left: 8px;
+}
+
+.disclaimer {
+  display: block;
+  margin-top: 17px;
+  color: #8396b8;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* HERO */
+
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 70px 25px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.tag {
+  display: inline-block;
+  background: #0c2850;
+  color: #66dfff;
+  border: 1px solid #175ca1;
+  padding: 10px 14px;
+  border-radius: 25px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.hero h2 {
+  font-size: clamp(39px, 5.5vw, 66px);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #1687ff, #49efff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.description {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 15px;
+  max-width: 530px;
+  margin-bottom: 28px;
+}
+
+.small {
+  color: #8396b8;
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 22px;
+}
+
+/* ROBOT AI */
+
+.robot-area {
+  min-height: 400px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  border: 1px solid #1687ff50;
+  border-radius: 50%;
+  box-shadow: 0 0 60px #1687ff12, inset 0 0 50px #1687ff12;
+}
+
+.orbit.two {
+  width: 250px;
+  height: 250px;
+  border-color: #38e5ff55;
+}
+
+.robot {
+  z-index: 2;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 25px #1687ff55);
+}
+
+.head {
+  width: 145px;
+  height: 120px;
+  background: linear-gradient(145deg, #1a477e, #09142b);
+  border: 2px solid var(--cyan);
+  border-radius: 38px;
+  box-shadow: inset 0 0 30px #1687ff44;
+}
+
+.eyes {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding-top: 39px;
+}
+
+.eye {
+  height: 14px;
+  width: 23px;
+  background: #51f1ff;
+  border-radius: 50%;
+  box-shadow: 0 0 18px var(--cyan);
+}
+
+.mouth {
+  height: 5px;
+  width: 38px;
+  margin: 20px auto;
+  background: var(--blue);
+  border-radius: 10px;
+}
+
+.robot-body {
+  height: 95px;
+  width: 112px;
+  margin: 13px auto 0;
+  border-radius: 25px;
+  border: 2px solid #2788e7;
+  background: linear-gradient(145deg, #163d70, #071329);
+  display: grid;
+  place-items: center;
+}
+
+.chest {
+  height: 48px;
+  width: 48px;
+  border: 2px solid var(--cyan);
+  border-radius: 10px;
+  transform: rotate(45deg);
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+  font-size: 25px;
+}
+
+.chest span { transform: rotate(-45deg); }
+
+.float-card {
+  position: absolute;
+  z-index: 3;
+  background: #0b1830ee;
+  border: 1px solid #24568d;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px #0005;
+}
+
+.card-top { top: 30px; right: 0; }
+.card-bottom { bottom: 25px; left: 0; }
+
+.card-label {
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.card-number { font-size: 18px; font-weight: bold; }
+
+.card-note {
+  color: var(--cyan);
+  font-size: 11px;
+  margin-top: 9px;
+}
+
+.chart { width: 135px; height: 43px; margin-top: 8px; }
+.chart svg { width: 100%; height: 100%; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* SEZIONI */
+
+.section {
+  max-width: 1120px;
+  margin: auto;
+  padding: 45px 25px 75px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-title h2 {
+  font-size: clamp(26px, 4vw, 37px);
+  margin-bottom: 12px;
+}
+
+.section-title p {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.feature {
+  padding: 26px;
+  border: 1px solid #1b3457;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #0d1b35, #081225);
+  transition: transform .2s, border-color .2s;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+}
+
+.feature-icon {
+  font-size: 30px;
+  margin-bottom: 18px;
+}
+
+.feature h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* CONTATTI */
+
+#contactPage {
+  display: none;
+  padding: 65px 22px;
+  min-height: 75vh;
+}
+
+.contact-layout {
+  max-width: 980px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.contact-info h2 {
+  font-size: clamp(35px, 5vw, 52px);
+  margin: 20px 0;
+  line-height: 1.15;
+}
+
+.contact-info p {
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.info-box {
+  background: #0c1931;
+  border: 1px solid #1d3c65;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 25px;
+  color: #b6d4ff;
+  line-height: 1.9;
+  font-size: 12px;
+}
+
+.form-card {
+  background: linear-gradient(145deg, #101f3b, #081326);
+  border: 1px solid #244a7a;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 20px 70px #0004;
+}
+
+.form-card h3 { font-size: 25px; margin-bottom: 12px; }
+
+.form-card > p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.contact-label {
+  display: block;
+  font-size: 12px;
+  margin: 22px 0 10px;
+}
+
+.contact-link {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.email-link {
+  background: #0b1730;
+  color: white;
+  border: 1px solid #2b466c;
+}
+
+.contact-note {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
+.back {
+  margin-top: 12px;
+  background: transparent;
+  color: white;
+  border: 1px solid #2b466c;
+  width: 100%;
+}
+
+/* FOOTER */
+
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 27px 20px;
+  color: #788baa;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+footer a { color: var(--cyan); }
+
+@media (max-width: 800px) {
+  .promo {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .promo-photo img { height: 340px; }
+  .promo-content { padding: 12px; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 50px;
+  }
+
+  .hero-copy { text-align: center; }
+
+  .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .robot-area { min-height: 370px; }
+  .features { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  header { padding: 18px 15px; }
+
+  .logo { font-size: 17px; letter-spacing: 0; }
+  nav { gap: 8px; }
+  nav a { display: none; }
+  nav button { padding: 11px; font-size: 12px; }
+
+  .promo {
+    width: calc(100% - 28px);
+    margin: 18px 14px;
+    padding: 14px;
+  }
+
+  .promo-photo img { height: 280px; }
+  .promo-content { padding: 12px 4px; }
+
+  .hero { padding: 45px 20px; }
+
+  .hero-copy .btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .robot-area {
+    transform: scale(.88);
+    margin: -10px 0;
+  }
+
+  .orbit { width: 290px; height: 290px; }
+  .orbit.two { width: 225px; height: 225px; }
+
+  .float-card { padding: 11px; }
+  .card-number { font-size: 15px; }
+
+  .section { padding-left: 20px; padding-right: 20px; }
+  #contactPage { padding: 40px 18px; }
+  .form-card { padding: 23px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+ 
+<body>
+
+<body>
+
+<header>
+  <a class="logo" href="#" onclick="showHome(); return false;">
+    ✦ <strong>Clientzone <span>LTD</span></strong>
+  </a>
+
+  <nav>
+    <a href="#tecnologia" onclick="showHome()">Tecnologia</a>
+    <a href="#vantaggi" onclick="showHome()">Vantaggi</a>
+
+    <button type="button" onclick="showContact()">
+      Contattaci ↗
+    </button>
+  </nav>
+</header>
+
+
+
+<!-- BANNER PROMOZIONALE -->
+
+<section class="promo" id="vantaggi">
+
+  <div class="promo-photo">
+    <img
+      src="https://wallpapercave.com/wp/wp16079386.png"
+      alt="Gerry Scotti al Premio Biagio Agnes 2026"
+      loading="eager"
+      onerror="this.onerror=null;this.src='https://placehold.co/800x600/0b1730/38e5ff?text=Clientzone+LTD';"
+    >
+
+    <small class="photo-credit">
+      
+      Fonte:
+      <a href="https://wallpapercave.com/wp/wp16079386.png"
+         target="_blank" rel="noopener noreferrer">
+        galleria fotografica
+      </a>.
+    </small>
+  </div>
+
+  <div class="promo-content">
+    <span class="badge">✦ Clientzone LTD</span>
+
+    <h1>Scopri il bonus di benvenuto</h1>
+
+    <div class="amount">300 €</div>
+
+    <p>
+      Con il bonus di 300 € potrai acquistare criptovalute e iniziare a esplorare il mondo degli investimenti digitali, **senza dover effettuare alcun deposito personale**, secondo i termini e le condizioni dell'iniziativa.
+    </p>
+
+    <button class="btn primary" type="button" onclick="showContact()">
+      RICHIEDI INFORMAZIONI →
+    </button>
+
+    <small class="disclaimer">
+       Non perdere questa opportunità!
+      
+    </small>
+  </div>
+
+</section>
+
+<!-- PAGINA PRINCIPALE -->
+
+<main id="homePage">
+
+  <section class="hero">
+    <div class="hero-copy">
+
+      <div class="tag">✦ FINANCIAL TECHNOLOGY</div>
+
+      <h2>
+fcon        Il futuro degli investimenti è
+        <span class="gradient">intelligente.</span>
+      </h2>
+
+      <p class="description">
+        Esplora il mondo delle criptovalute con un'esperienza
+        digitale dal design innovativo. Scopri il ruolo
+        dell'intelligenza artificiale e gli strumenti utilizzati
+        per analizzare i mercati digitali.
+      </p>
+
+     <button type="button" onclick="
+  document.getElementById('homePage').hidden = true;
+  document.getElementById('contactPage').hidden = false;
+  window.scrollTo(0, 0);
+">
+  Contattaci ↗
+</button>
+
+      <button class="btn secondary" type="button"
+        onclick="document.getElementById('tecnologia').scrollIntoView({behavior:'smooth'})">
+        Esplora la tecnologia
+      </button>
+
+      <p class="small">
+        Tecnologia digitale · Informazione · Trasparenza
+      </p>
+    </div>
+
+    <div class="robot-area" aria-label="Illustrazione di un robot AI">
+      <div class="orbit"></div>
+      <div class="orbit two"></div>
+
+      <div class="robot" aria-hidden="true">
+        <div class="head">
+          <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+          <div class="mouth"></div>
+        </div>
+
+        <div class="robot-body">
+          <div class="chest"><span>✦</span></div>
+        </div>
+      </div>
+
+      <div class="float-card card-top">
+        <div class="card-label">AI MARKET ANALYTICS</div>
+        <div class="card-number">Clientzone LTD</div>
+
+        <div class="chart">
+          <svg viewBox="0 0 140 45" aria-hidden="true">
+            <defs>
+              <linearGradient id="chartGradient">
+                <stop offset="0%" stop-color="#1687ff"/>
+                <stop offset="100%" stop-color="#38e5ff"/>
+              </linearGradient>
+            </defs>
+            <path d="M2 38 L20 28 L35 32 L50 15 L66 24 L82 8 L99 19 L116 5 L138 8"
+              stroke="url(#chartGradient)" stroke-width="3" fill="none"
+              stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="card-note">Grafica dimostrativa</div>
+      </div>
+
+      <div class="float-card card-bottom">
+        <div class="card-label">SMART TECHNOLOGY</div>
+        <div class="card-number">AI <span style="color:#38e5ff">●</span></div>
+        <div class="card-note">Analisi dei mercati</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tecnologia">
+    <div class="section-title">
+      <h2>La tecnologia incontra la finanza</h2>
+      <p>Un'esperienza digitale moderna per esplorare i mercati.</p>
+    </div>
+
+    <div class="features">
+
+      <article class="feature">
+        <div class="feature-icon">🤖</div>
+        <h3>Intelligenza artificiale</h3>
+        <p>
+          Scopri il ruolo dell'intelligenza artificiale
+          nell'analisi dei dati finanziari. Il robot è
+          illustrativo e non effettua operazioni reali.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Grafici e mercati</h3>
+        <p>
+          Un'interfaccia ispirata agli strumenti di analisi
+          finanziaria, con visualizzazioni pensate per
+          essere intuitive e accessibili.
+        </p>
+      </article>
+
+      <article class="feature">
+        <div class="feature-icon">🔐</div>
+        <h3>Privacy e trasparenza</h3>
+        <p>
+          Informazioni chiare, attenzione alla riservatezza
+          e consapevolezza dei rischi legati agli investimenti
+          nei mercati delle criptovalute.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>Informazioni chiare, scelte consapevoli</h2>
+      <p>
+        Prima di aderire a qualsiasi promozione, consulta
+        sempre i termini e le condizioni ufficiali.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- PAGINA CONTATTI -->
+
+<main id="contactPage" style="display:none;">
+  <div class="contact-layout">
+
+    <section class="contact-info">
+      <div class="tag">✦ CONTATTA CLIENTZONE LTD</div>
+
+      <h2>
+        Il prossimo passo inizia
+        <span class="gradient">qui.</span>
+      </h2>
+
+      <p>
+        Vuoi ricevere maggiori informazioni?
+        Contattaci direttamente tramite WhatsApp o email.
+        Non devi compilare moduli né inserire i tuoi recapiti.
+      </p>
+
+      <div class="info-box">
+        ✦ Clientzone LTD<br>
+        Tecnologia digitale e informazione finanziaria.<br>
+        Contattaci per maggiori informazioni.
+      </div>
+    </section>
+
+    <section class="form-card">
+      <h3>Parla con noi</h3>
+      <p>Scegli il metodo di contatto che preferisci.</p>
+
+      <span class="contact-label">WhatsApp aziendale</span>
+
+      <a class="btn primary contact-link"
+         href="https://wa.me/393780098750"
+         target="_blank" rel="noopener noreferrer">
+        Contattaci su WhatsApp ↗
+      </a>
+
+      <span class="contact-label">Email aziendale</span>
+
+      <a class="btn email-link contact-link"
+         href="mailto:clientzoneassist@gmail.com">
+        Scrivici un'email ↗
+      </a>
+
+      <p class="contact-note">
+       
+      </p>
+
+      <button class="btn back" type="button" onclick="showHome()">
+        ← Torna alla pagina iniziale
+      </button>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  © 2026 Clientzone LTD · Tutti i diritti riservati.<br>
+  .<br>
+  .<br><br>
+  <a href="#" onclick="showContact(); return false;">Contatti</a>
+</footer>
+
+
+<script>
+function showContact() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("contactPage").style.display = "block";
+  window.scrollTo(0, 0);
+}
+
+function showHome() {
+  document.getElementById("contactPage").style.display = "none";
+  document.getElementById("homePage").style.display = "block";
+  window.scrollTo(0, 0);
+}
+</script>
+
+
+</body>
+</html>
